@@ -1,5 +1,5 @@
 <!-- PROJECT BANNER -->
-<h1 align="center">🟦 SubTrack Pro</h1>
+<h1 align="center">🟦 SubSphere</h1>
 <p align="center">
   <strong>Unified Subscription Governance Platform</strong><br/>
   <em>A full-stack ecosystem for subscription tracking, renewal orchestration, and expense intelligence.</em>
@@ -19,7 +19,7 @@
 ---
 
 ## 📌 Overview
-**SubTrack Pro** is a modern subscription oversight platform engineered to provide end-to-end visibility into recurring digital expenses, renewal cycles, and provider-level insights.  
+**SubSphere** is a modern subscription oversight platform engineered to provide end-to-end visibility into recurring digital expenses, renewal cycles, and provider-level insights.  
 It combines a robust backend service with a scalable, high-performance frontend foundation—positioning it as a market-ready subscription intelligence suite.
 
 ---
@@ -64,5 +64,5 @@ MongoDB Database Cluster
 
 ## 🚀 Project Mission
 
-**SubTrack Pro** is purpose-built to deliver operational clarity in a world overwhelmed with digital subscriptions.
+**SubSphere** is purpose-built to deliver operational clarity in a world overwhelmed with digital subscriptions.
 It provides a single, intelligent platform where users can govern, optimize, and monitor their recurring commitments with enterprise-grade precision.
