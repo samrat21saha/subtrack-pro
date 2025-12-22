@@ -9,7 +9,6 @@
   <img src="https://img.shields.io/badge/Arcjet-Security-red" />
 </p>
 
----
 
 ## 📌 Overview
 **SubSphere** is a backend-first, production-grade **subscription tracking and lifecycle management system** designed to help users centrally manage recurring subscriptions, monitor renewal cycles, and proactively avoid unwanted charges.
@@ -113,3 +112,81 @@ SubSphere/
 ├── package-lock.json
 └── .gitignore
 ```
+
+
+## ⚙️ Installation & Local Setup
+
+### Prerequisites
+- Node.js (v18+)
+- MongoDB (local or Atlas)
+
+### Steps
+```
+git clone https://github.com/<your-username>/SubSphere.git
+cd SubSphere
+npm install
+npm run dev
+```
+
+### Environment Variables
+- Create a `.env` file:
+
+```
+PORT=5000
+MONGO_URI=your_mongodb_connection_string
+JWT_SECRET=your_jwt_secret
+ARCJET_KEY=your_arcjet_key
+```
+
+### API Base URL
+```
+http://localhost:5000/api/v1
+```
+
+
+## 🔒 System Characteristics
+
+- Stateless REST APIs
+- JWT-based authentication
+- Ownership-based authorization
+- Centralized error handling
+- Rate-limited and bot-protected endpoints
+- Clean separation of concerns
+
+
+## 🚧 Known Limitations
+
+- No frontend UI (by design)
+- No background jobs for reminders yet
+- No payment provider integration
+
+
+## 🛣️ Future Enhancements
+
+- Email & push notification reminders
+- Subscription analytics dashboard
+- Cron-based renewal alerts
+- Payment gateway integrations
+- Dockerized deployment
+- Full-stack frontend (Open Source Ready)
+
+
+## 🤝 Contribution
+
+Contributions are welcome and encouraged.  
+This project is open-source friendly and ideal for:
+
+- Backend contributors
+- Frontend developers looking to build a real UI
+- Beginners entering structured open-source development
+
+
+## 📄 License
+
+This project is licensed under the **MIT License**.
+
+
+## 👤 Author
+
+**Samrat Saha**  
+Backend & Full-Stack Developer
