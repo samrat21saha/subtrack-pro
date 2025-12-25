@@ -1,21 +1,20 @@
 import arcjet, {shield, detectBot, tokenBucket} from "@arcjet/node";
-import { ARCJET_KEY } from "./env";
+import { ARCJET_KEY, ARCJET_ENV } from "./env.js";
 
+const MODE = ARCJET_ENV === "production" ? "LIVE" : "DRY_RUN";
 
 const aj = arcjet({
 
+
   key: ARCJET_KEY,
   rules: [
-    // Shield protects your app from common attacks e.g. SQL injection
-    shield({ mode: "LIVE" }),
-    // Create a bot detection rule
+    shield({ mode: MODE }),
+
     detectBot({
-      mode: "LIVE", // Blocks requests. Use "DRY_RUN" to log only
-      // Block all bots except the following
-      allow: [
-        "CATEGORY:SEARCH_ENGINE", 
-      ],
+      mode: MODE,
+      allow: ["CATEGORY:SEARCH_ENGINE"],
     }),
+
     // Create a token bucket rate limit. Other algorithms are supported.
     tokenBucket({
       mode: "LIVE",
