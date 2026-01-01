@@ -1,192 +1,210 @@
-# SubSphere 🔔  
-**Subscription Management & Intelligent Reminder Platform**
+# VidyaArk 📚
 
-<p align="left">
-  <img src="https://img.shields.io/badge/Node.js-18.x-green?logo=node.js&logoColor=white" />
-  <img src="https://img.shields.io/badge/Express.js-5.x-black?logo=express&logoColor=white" />
-  <img src="https://img.shields.io/badge/MongoDB-Atlas-green?logo=mongodb&logoColor=white" />
-  <img src="https://img.shields.io/badge/JWT-Auth-blue?logo=jsonwebtokens&logoColor=white" />
-  <img src="https://img.shields.io/badge/Arcjet-Security-red" />
-</p>
+## E-Commerce Bookstore Platform with e-book PDF free to Download 
+
+![Node.js](https://img.shields.io/badge/Node.js-18.x-green?logo=node.js&logoColor=white)
+![Express.js](https://img.shields.io/badge/Express.js-5.x-black?logo=express&logoColor=white)
+![MongoDB](https://img.shields.io/badge/MongoDB-6.x-green?logo=mongodb&logoColor=white)
+![JWT](https://img.shields.io/badge/JWT-Authentication-blue?logo=jsonwebtokens&logoColor=white)
+![REST API](https://img.shields.io/badge/REST-API-orange)
 
 
 ## 📌 Overview
-**SubSphere** is a backend-first, production-grade **subscription tracking and lifecycle management system** designed to help users centrally manage recurring subscriptions, monitor renewal cycles, and proactively avoid unwanted charges.
 
-The platform emphasizes **secure authentication**, **robust authorization**, **scalable data modeling**, and **defensive middleware design**, aligning with real-world SaaS backend standards.  
-SubSphere is architected as an **API-first system**, with frontend development intentionally decoupled to enable future extensibility and open-source collaboration.
+VidyaArk is a full-stack bookstore e-commerce application designed to manage book discovery, purchasing workflows, and administrative operations through a secure, scalable REST API architecture.
+
+The system supports user authentication, cart and order management, favourites (wishlist), and an admin panel for complete book lifecycle control.  
+VidyaArk is built with a backend-first mindset, ensuring data integrity, role-based access control, and clean frontend–backend separation.
 
 
 ## 🎯 Key Objectives
-- Centralize management of all user subscriptions
-- Track billing cycles, renewal dates, and subscription status
-- Provide secure, role-aware access control
-- Protect APIs using rate-limiting and bot detection
-- Serve as a scalable foundation for reminders, analytics, and notifications
+
+- Build a secure bookstore e-commerce backend  
+- Implement JWT-based authentication and authorization  
+- Enable cart, favourites, and order workflows  
+- Provide admin-only book and order management  
+- Design REST APIs suitable for real-world scaling  
 
 
 ## 🧠 How It Works (High-Level Flow)
-1. Users authenticate using JWT-based authentication
-2. Authenticated users create and manage subscription records
-3. Each subscription is securely mapped to its owner
-4. Middleware layers enforce authentication, authorization, and rate limits
-5. APIs respond with structured, predictable JSON contracts
-6. Future schedulers/notifications can consume the same data layer
+
+- Users authenticate using JWT-based login  
+- Authenticated users browse and interact with books  
+- Cart, favourites, and orders are securely user-scoped  
+- Admin users manage books and view sales analytics  
+- Frontend communicates exclusively via protected REST APIs  
+- MongoDB persists all user, book, and order data  
 
 
-## 🧩 System Workflow Diagram
+## 🏗️ System Workflow Diagram
 
-> The diagram below represents the end-to-end backend workflow of SubSphere, highlighting authentication, protected routes, data persistence, and security enforcement.
-
-<!-- WORKFLOW DIAGRAM PLACEHOLDER -->
+The diagram below illustrates the complete VidyaArk workflow, covering authentication, protected routes, business logic, and data persistence.
 
 ```mermaid
 flowchart LR
-    A[Client / Frontend] -->|Login / Signup| B[Auth Controller]
-    B -->|JWT Issued| A
+    A[Frontend / React App] -->|Login / Signup| B[Auth Controller]
+    B -->|JWT Token| A
 
     A -->|Bearer Token| C[Auth Middleware]
-    C -->|Verified User| D[Protected Routes]
+    C -->|Authorized| D[Protected Routes]
 
-    D -->|Create / Read / Update| E[Subscription Controller]
-    E --> F[(MongoDB)]
+    D --> E[Book Controller]
+    D --> F[Cart Controller]
+    D --> G[Favourites Controller]
+    D --> H[Order Controller]
 
-    D --> G[User Controller]
-    G --> F
+    E --> I[(MongoDB)]
+    F --> I
+    G --> I
+    H --> I
 
-    A -->|All Requests| H[Arcjet Middleware]
-    H -->|Rate Limit / Bot Check| D
+    D --> J[Admin Controller]
+    J --> I
 ```
+## 👤 User Capabilities
 
-## ✅ Verified Functional Behavior
+- Register and authenticate securely  
+- Browse and view book details  
+- Add/remove books from cart  
+- Add/remove books from favourites  
+- Place orders and view order history  
+- Update profile details and avatar  
 
-The following behaviors were validated during local and API testing:
 
-- JWT tokens are issued and verified correctly
-- Unauthorized access to protected routes is blocked
-- Users can only access their own subscriptions
-- Rate-limited requests are rejected gracefully
-- Bot-like traffic is automatically denied
+## 🛠️ Admin Capabilities
 
-✔️ Confirms correct authentication and authorization flow  
-✔️ Confirms secure ownership-based data access  
-✔️ Confirms middleware-driven API protection  
+- Add, update, and delete books  
+- View all orders across users  
+- Access admin dashboard metrics:
+  - Total orders  
+  - Total sales  
+  - Top-selling books  
+- Role-based route protection  
+
+
+## 🔐 Authentication & Authorization
+
+- JWT issued on successful login  
+- Tokens sent as `Bearer` Authorization headers  
+- Middleware validates:
+  - Token integrity  
+  - User identity  
+  - User role (user / admin)  
+- Unauthorized access is blocked at middleware level  
+
+
+## 🧩 Backend Design Overview
+
+### Express Router Layer
+- Modular route separation for users, books, cart, favourites, and orders  
+
+### Middleware Layer
+- Authentication, authorization, validation, and error handling  
+
+### Controller Layer
+- Business logic and request orchestration  
+
+### Database Layer
+- MongoDB with Mongoose schemas for structured relations  
+
+This layered approach ensures maintainability, testability, and scalability.
+
+
+## 🌐 Frontend–Backend Integration
+
+- React frontend consumes REST APIs via Axios  
+- Centralized API configuration  
+- JWT-aware requests for protected endpoints  
+- UI state driven by API responses  
+- Frontend remains loosely coupled to backend contracts  
 
 
 ## 🧩 Tech Stack
 
 ### Backend
-- Node.js
-- Express.js
-- MongoDB (Mongoose ODM)
-- JWT Authentication
-- Arcjet (Rate Limiting & Bot Protection)
+- Node.js  
+- Express.js  
+- MongoDB (Mongoose)  
+- JWT Authentication  
+- RESTful API Design  
 
 ### Frontend
-- 🚧 Not implemented (API-first architecture)
-
+- React  
+- Redux Toolkit  
+- Axios  
+- Tailwind CSS  
 
 ## 📂 Project Structure
-```
-SubSphere/
-├── config/
-│   ├── env.js
-│   ├── arcjet.js
-├── controllers/
-│   ├── auth.controller.js
-│   ├── user.controller.js
-│   └── subscription.controller.js
-├── middlewares/
-│   ├── auth.middleware.js
-│   ├── arcjet.middleware.js
-│   └── error.middleware.js
-├── models/
-│   ├── user.model.js
-│   └── subscription.model.js
-├── routes/
-│   ├── auth.routes.js
-│   ├── user.routes.js
-│   └── subscription.routes.js
-├── app.js
-├── package.json
-├── package-lock.json
-└── .gitignore
-```
 
+```
+VidyaArk/
+├── backend/
+│   ├── connection/
+│   ├── controllers/
+│   ├── middlewares/
+│   ├── models/
+│   ├── routes/
+│   ├── uploads/
+│   └── app.js
+├── frontend/
+│   ├── src/
+│   │   ├── api/
+│   │   ├── components/
+│   │   ├── pages/
+│   │   ├── store/
+│   │   └── App.jsx
+├── package.json
+└── README.md
+```
 
 ## ⚙️ Installation & Local Setup
+###Prerequisites
 
-### Prerequisites
-- Node.js (v18+)
-- MongoDB (local or Atlas)
+-Node.js (v18+)
+-MongoDB (local or Atlas)
 
 ### Steps
 ```
-git clone https://github.com/<your-username>/SubSphere.git
-cd SubSphere
+git clone https://github.com/<your-username>/VidyaArk.git
+cd VidyaArk
 npm install
 npm run dev
 ```
 
 ### Environment Variables
-- Create a `.env` file:
-
 ```
-PORT=5000
+PORT=5600
 MONGO_URI=your_mongodb_connection_string
 JWT_SECRET=your_jwt_secret
-ARCJET_KEY=your_arcjet_key
 ```
-
-### API Base URL
-```
-http://localhost:5000/api/v1
-```
-
-
-## 🔒 System Characteristics
-
-- Stateless REST APIs
-- JWT-based authentication
-- Ownership-based authorization
-- Centralized error handling
-- Rate-limited and bot-protected endpoints
-- Clean separation of concerns
-
 
 ## 🚧 Known Limitations
 
-- No frontend UI (by design)
-- No background jobs for reminders yet
-- No payment provider integration
+- Payment gateway not yet integrated
 
+- No real-time notifications
+
+- Basic analytics only (can be extended)
 
 ## 🛣️ Future Enhancements
 
-- Email & push notification reminders
-- Subscription analytics dashboard
-- Cron-based renewal alerts
-- Payment gateway integrations
-- Dockerized deployment
-- Full-stack frontend (Open Source Ready)
+- Payment gateway integration
 
+- Advanced search and filtering
 
-## 🤝 Contribution
+- Recommendation engine
 
-Contributions are welcome and encouraged.  
-This project is open-source friendly and ideal for:
+- Email notifications
 
-- Backend contributors
-- Frontend developers looking to build a real UI
-- Beginners entering structured open-source development
+- Admin analytics expansion
 
+- Cloud storage for media
 
 ## 📄 License
 
-This project is licensed under the **MIT License**.
-
+- This project is licensed under the MIT License.
 
 ## 👤 Author
 
-**Samrat Saha**  
+Samrat Saha
 Backend & Full-Stack Developer
